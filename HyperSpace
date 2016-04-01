@@ -1,0 +1,108 @@
+package com.example.android.apis.view;
+import com.example.android.apis.R;
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
+import android.widget.ViewFlipper;
+
+
+public class PushUp extends Activity {
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.animation_2);
+        ViewFlipper mFlipper;
+        mFlipper = ((ViewFlipper) this.findViewById(R.id.flipper));
+        
+        mFlipper.setInAnimation(AnimationUtils.loadAnimation(this,
+                    R.anim.hyperspace_in));
+                    
+        mFlipper.setOutAnimation(AnimationUtils.loadAnimation(this,
+                    R.anim.hyperspace_out));
+        
+        mFlipper.startFlipping();
+    }
+}
+
+
+
+main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout>
+    <ViewFlipper android:id="@+id/flipper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:flipInterval="2000"
+        android:layout_marginBottom="20dip" >
+                <TextView
+                        android:text="@string/animation_2_text_1"/>
+                <TextView
+                        android:text="@string/animation_2_text_2"/>
+                <TextView
+                        android:text="@string/animation_2_text_3"/>
+                <TextView
+                        android:text="@string/animation_2_text_4"/>
+    </ViewFlipper>
+</LinearLayout>
+
+
+
+anim/hyperspace_in.xml
+<?xml version="1.0" encoding="utf-8"?>
+<alpha xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromAlpha="0.0"
+        android:toAlpha="1.0"
+        android:duration="300"
+        android:startOffset="1200" />
+
+
+
+
+
+anim/hyperspace_out.xml
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android" 
+        android:shareInterpolator="false">
+    <scale 
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
+        android:fromXScale="1.0" 
+        android:toXScale="1.4" 
+        android:fromYScale="1.0" 
+        android:toYScale="0.6" 
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:fillEnabled="true"
+        android:fillAfter="false"
+        android:duration="700" />
+    <set android:interpolator="@android:anim/accelerate_interpolator">
+        <scale
+            android:fromXScale="1.4" 
+            android:toXScale="0.0"
+            android:fromYScale="0.6"
+            android:toYScale="0.0"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:fillEnabled="true"
+            android:fillBefore="false"
+            android:fillAfter="true"
+            android:startOffset="700"
+            android:duration="400" />
+        <rotate 
+            android:fromDegrees="0" 
+            android:toDegrees="-45"
+            android:toYScale="0.0"
+            android:pivotX="50%"
+            android:pivotY="50%"
+            android:fillEnabled="true"
+            android:fillBefore="false"
+            android:fillAfter="true"
+            android:startOffset="700"
+            android:duration="400" />
+    </set>
+</set>
+
