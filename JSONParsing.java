@@ -61,7 +61,8 @@ public class MyClass extends Activity {
                      StringBuilder builder = new StringBuilder();
 
                      for (Country country : myresponse.data) {
-                           builder.append(String.format("<br>Country: <b>%s</b><br>Capital: <b>%s</b><br><br>", country.getCountry(), country.getCapital()));
+                           builder.append(String.format("<br>Country: <b>%s</b><br>Capital: <b>%s</b><br><br>", 
+                           country.getCountry(), country.getCapital()));
                      }
                      capitalTextView.setText(Html.fromHtml(builder.toString()));
                      progressDialog.cancel();
